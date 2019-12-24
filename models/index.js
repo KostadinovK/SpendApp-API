@@ -5,7 +5,9 @@ const models = {
   Currency: db.import('./currency'),
   User: db.import('./user'),
   Icon: db.import('./icon'),
-  PaymentCategory: db.import('./paymentCategory')
+  PaymentCategory: db.import('./paymentCategory'),
+  IncomeCategory: db.import('./incomeCategory'),
+  Payment: db.import('./payment')
 };
 
 Object.keys(models).forEach(modelName => {
