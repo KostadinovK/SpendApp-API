@@ -3,8 +3,6 @@ const Sequelize = require('sequelize');
 module.exports = new Sequelize('SpendAppDb', 'postgres', 'kwe32nm', {
     host: 'localhost',
     dialect: 'postgres',
-    operatorsAliases: false,
-
     pool: {
         max: 5,
         min: 0,
