@@ -1,0 +1,25 @@
+{
+  "name": "spendapp-api",
+  "version": "1.0.0",
+  "description": "API fo SpendApp",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KostadinovK/SpendApp-API.git"
+  },
+  "author": "Kostadin Kostadinov",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/KostadinovK/SpendApp-API/issues"
+  },
+  "homepage": "https://github.com/KostadinovK/SpendApp-API#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "pg": "^7.15.1",
+    "pg-hstore": "^2.3.3",
+    "sequelize": "^5.21.3"
+  }
+}
