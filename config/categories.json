@@ -1,0 +1,54 @@
+{
+    "PaymentCategories" : [
+        {
+            "Name": "Car",
+            "IconClass": "fas fa-car"
+        },
+        {
+            "Name": "Travel",
+            "IconClass": "fas fa-plane"
+        },
+        {
+            "Name": "Food",
+            "IconClass": "fas fa-utensils"
+        },
+        {
+            "Name": "Entertainment",
+            "IconClass": "fas fa-smile-beam"
+        },
+        {
+            "Name": "Home",
+            "IconClass": "fas fa-home"
+        },
+        {
+            "Name": "Shopping",
+            "IconClass": "fas fa-shopping-basket"
+        }
+    ],
+    "IncomeCategories": [
+        {
+            "Name": "Salary",
+            "IconClass": "fas fa-coins"
+        },
+        {
+            "Name": "Rent",
+            "IconClass": "fas fa-hand-holding-usd"
+        },
+        {
+            "Name": "Food",
+            "IconClass": "fas fa-utensils"
+        },
+        {
+            "Name": "Entertainment",
+            "IconClass": "fas fa-smile-beam"
+        },
+        {
+            "Name": "Home",
+            "IconClass": "fas fa-home"
+        },
+        {
+            "Name": "Shopping",
+            "IconClass": "fas fa-shopping-basket"
+        }
+    ]
+}

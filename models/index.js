@@ -1,8 +1,9 @@
 const Sequelize = require('sequelize');
 const db = require('../config/database');
+const seeder = require('../config/seeder');
 
 const models = {
-  
+
   Currency: db.import('./currency'),
   User: db.import('./user'),
   Icon: db.import('./icon'),

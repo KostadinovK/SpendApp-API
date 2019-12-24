@@ -7,7 +7,7 @@ module.exports = (sequelize, DataTypes) => {
         },
         CssClass: {
             type: DataTypes.STRING,
-            validate: { len: [1, 20] },
+            validate: { len: [1, 40] },
             allowNull: false
         }
         

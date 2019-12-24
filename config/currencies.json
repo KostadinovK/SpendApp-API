@@ -1,0 +1,17 @@
+[
+    {
+        "Name": "Bulgarian Lev",
+        "Symbol": null,
+        "Code": "BGN"
+    },
+    {
+        "Name": "Dollar",
+        "Symbol": "$",
+        "Code": "USD"
+    },
+    {
+        "Name": "Euro",
+        "Symbol": "€",
+        "Code": "EUR"
+    }
+]
