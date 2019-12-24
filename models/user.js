@@ -33,6 +33,10 @@ module.exports = (sequelize, DataTypes) => {
         User.belongsTo(models.Currency, {
             foreignKey: 'CurrencyId'
         })
+
+        User.hasMany( models.Payment, { as: 'Payments' } );
+        User.hasMany( models.Income, { as: 'Incomes' } );
+        User.hasMany( models.BudgetByTime, { as: 'BudgetsByTime' } );
     };
 
     return User;
