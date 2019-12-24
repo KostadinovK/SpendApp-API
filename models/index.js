@@ -3,7 +3,9 @@ const db = require('../config/database');
 
 const models = {
   Currency: db.import('./currency'),
-  User: db.import('./user')
+  User: db.import('./user'),
+  Icon: db.import('./icon'),
+  PaymentCategory: db.import('./paymentCategory')
 };
 
 Object.keys(models).forEach(modelName => {
