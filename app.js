@@ -1,4 +1,10 @@
 const express = require('express');
+const db = require('./config/database');
+
+db.authenticate()
+    .then(() => console.log("Database connected..."))
+    .catch(err => console.log(err));
+
 const app = express();
 
 app.get('/', (req, res) => res.send("<h1>Hello World</h1>"))
