@@ -8,7 +8,8 @@ module.exports = (sequelize, DataTypes) => {
         Name: {
             type: DataTypes.STRING,
             validate: { is: ["^[a-zA-Z ]+$",'i'], len: [3, 50] },
-            allowNull: false
+            allowNull: false,
+            isUnique: true
         },
         IconClass: {
             type: DataTypes.STRING,

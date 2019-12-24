@@ -74,7 +74,7 @@ module.exports = function () {
                 hasCategoriesInDb(db, "payment").then(hasCurrencies => {
                     if (!hasCurrencies) {
                         for (const category of paymentCategories) {
-                            console.log(category);
+                            
                             db.PaymentCategory.create({
                                 Name: category.Name,
                                 IconClass: category.IconClass
@@ -87,7 +87,7 @@ module.exports = function () {
                 hasCategoriesInDb(db, "income").then(hasCurrencies => {
                     if (!hasCurrencies) {
                         for (const category of incomeCategories) {
-                            console.log(category);
+                        
                             db.IncomeCategory.create({
                                 Name: category.Name,
                                 IconClass: category.IconClass

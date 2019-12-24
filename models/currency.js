@@ -8,7 +8,8 @@ module.exports = (sequelize, DataTypes) => {
         Name: {
             type: DataTypes.STRING,
             validate: { is: ["^[a-zA-Z ]+$",'i'], len: [3, 50] },
-            allowNull: false
+            allowNull: false,
+            isUnique: true
         },
         Symbol: {
             type: DataTypes.STRING,
@@ -18,7 +19,8 @@ module.exports = (sequelize, DataTypes) => {
         Code: {
             type: DataTypes.STRING,
             validate: { len: [1, 5] },
-            allowNull: false
+            allowNull: false,
+            isUnique: true
         },
     }, {timestamps: false});
 

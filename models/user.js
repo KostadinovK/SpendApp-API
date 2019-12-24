@@ -8,7 +8,8 @@ module.exports = (sequelize, DataTypes) => {
         Username: {
             type: DataTypes.STRING,
             validate: { is: ["^[a-z0-9A-Z]+$",'i'], len: [3, 30] },
-            allowNull: false
+            allowNull: false,
+            isUnique: true
         },
         Password: {
             type: DataTypes.STRING,
