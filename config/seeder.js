@@ -5,7 +5,7 @@ module.exports = function () {
     function seedData(db){
 
         seedCurrencies(db);
-        //seedCategories(db);
+        seedCategories(db);
 
     }
 
@@ -19,14 +19,26 @@ module.exports = function () {
         });
     }
 
-    function hasCategoriesInDb (db) {
-        return db.Category.count()
-          .then(count => {
-                if (count == 0) {
-                    return false;
-                }
-                return true;
-        });
+    function hasCategoriesInDb (db, categoryType) {
+        if(categoryType == "payment"){
+            return db.PaymentCategory.count()
+                .then(count => {
+                    if (count == 0) {
+                        return false;
+                    }
+                    return true;
+                });
+        }else if(categoryType == "income"){
+            return db.IncomeCategory.count()
+                .then(count => {
+                    if (count == 0) {
+                        return false;
+                    }
+                    return true;
+                });
+        }
+        
+        return null;
     }
 
     function seedCurrencies(db) {
@@ -53,26 +65,38 @@ module.exports = function () {
         });
     }
 
-    function seedCategories(db){
-        hasCategoriesInDb(db).then(hasCategories => {
-            if (!hasCategories) {
-                const filePath = path.join(__dirname, 'categories.json');
+    function seedCategories(db){       
+        const filePath = path.join(__dirname, 'categories.json');
 
-                fs.readFile(filePath, {encoding: 'utf-8'}, function(err,data){
-                    if (!err) {
-                        let categories = JSON.parse(data);
-                        for (const category of categories) {
-                    
-                            db.Currency.create({
-                                Name: currency.Name,
-                                Symbol: currency.Symbol,
-                                Code: currency.Code
+        fs.readFile(filePath, { encoding: 'utf-8' }, function (err, data) {
+            if (!err) {
+                let paymentCategories = JSON.parse(data).PaymentCategories;
+                hasCategoriesInDb(db, "payment").then(hasCurrencies => {
+                    if (!hasCurrencies) {
+                        for (const category of paymentCategories) {
+                            console.log(category);
+                            db.PaymentCategory.create({
+                                Name: category.Name,
+                                IconClass: category.IconClass
                             });
                         }
-                    } else {
-                        console.log(err);
                     }
                 });
+
+                let incomeCategories = JSON.parse(data).IncomeCategories;
+                hasCategoriesInDb(db, "income").then(hasCurrencies => {
+                    if (!hasCurrencies) {
+                        for (const category of incomeCategories) {
+                            console.log(category);
+                            db.IncomeCategory.create({
+                                Name: category.Name,
+                                IconClass: category.IconClass
+                            });
+                        }
+                    }
+                })
+            } else {
+                console.log(err);
             }
         });
     }

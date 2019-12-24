@@ -10,16 +10,12 @@ module.exports = (sequelize, DataTypes) => {
             validate: { is: ["^[a-zA-Z ]+$",'i'], len: [3, 50] },
             allowNull: false
         },
-        IconId: {
-            type: DataTypes.INTEGER
+        IconClass: {
+            type: DataTypes.STRING,
+            validate: { len: [1, 40] },
+            allowNull: false
         }
     }, {timestamps: false});
-
-    PaymentCategory.associate = (models) => {
-        PaymentCategory.belongsTo(models.Icon, {
-            foreignKey: 'IconId'
-        })
-    };
 
     return PaymentCategory;
 };

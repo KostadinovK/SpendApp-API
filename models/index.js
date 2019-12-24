@@ -6,14 +6,12 @@ const models = {
 
   Currency: db.import('./currency'),
   User: db.import('./user'),
-  Icon: db.import('./icon'),
   PaymentCategory: db.import('./paymentCategory'),
   IncomeCategory: db.import('./incomeCategory'),
   Payment: db.import('./payment'),
   Income: db.import('./income'),
   BudgetByTime: db.import('./budgetByTime'),
   Session: db.import('./session')
-
 };
 
 Object.keys(models).forEach(modelName => {
@@ -26,3 +24,4 @@ models.sequelize = db;
 models.Sequelize = Sequelize;
 
 module.exports = models;
+

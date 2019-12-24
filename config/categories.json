@@ -35,20 +35,20 @@
             "IconClass": "fas fa-hand-holding-usd"
         },
         {
-            "Name": "Food",
-            "IconClass": "fas fa-utensils"
+            "Name": "Money Transfer",
+            "IconClass": "fas fa-credit-card"
         },
         {
-            "Name": "Entertainment",
-            "IconClass": "fas fa-smile-beam"
+            "Name": "Gift",
+            "IconClass": "fas fa-gift"
         },
         {
-            "Name": "Home",
-            "IconClass": "fas fa-home"
+            "Name": "Sell",
+            "IconClass": "fas fa-dollar-sign"
         },
         {
-            "Name": "Shopping",
-            "IconClass": "fas fa-shopping-basket"
+            "Name": "Other",
+            "IconClass": "fas fa-dollar-sign"
         }
     ]
 }
