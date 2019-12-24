@@ -7,7 +7,8 @@ const models = {
   Icon: db.import('./icon'),
   PaymentCategory: db.import('./paymentCategory'),
   IncomeCategory: db.import('./incomeCategory'),
-  Payment: db.import('./payment')
+  Payment: db.import('./payment'),
+  Income: db.import('./income')
 };
 
 Object.keys(models).forEach(modelName => {
