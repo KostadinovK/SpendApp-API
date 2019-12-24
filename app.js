@@ -4,15 +4,25 @@ const db = require('./models/index');
 const app = express();
 
 app.get('/', (req, res) => {
-    /*
-    Create User
-    db.Users.create({
-        username: 'Test Testov2',
-        email: 'test@abv.bg'
+    
+    db.Currency.create({
+        Name: 'Bulgarian Lev',
+        Code: 'BGN'
     }).then(function (models) {
         res.send("<h1>Hello World</h1>");
     });
-    */
+
+    db.User.create({
+        Username: 'TestTestov',
+        Password: 'test123',
+        BudgetAmount: 100,
+        CurrencyId: 1,
+        RegisterTimestamp: Date.now()
+        
+    }).then(function (models) {
+        res.send("<h1>Hello World</h1>");
+    });
+    
 
     /*
     Get Users

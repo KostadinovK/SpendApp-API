@@ -2,7 +2,8 @@ const Sequelize = require('sequelize');
 const db = require('../config/database');
 
 const models = {
-  Users: db.import('./user')
+  Currency: db.import('./currency'),
+  User: db.import('./user')
 };
 
 Object.keys(models).forEach(modelName => {
