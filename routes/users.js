@@ -38,6 +38,19 @@ router.get('/:id', async (req, res) => {
 });
 
 //Edit User
+router.put('/:id', async (req, res) => {
+    const userId = +req.params.id;
+    const {username, password, budget, currency} = req.body;
+
+    let resArr = await userController.editUser(userId, username, password, budget, currency);
+
+    if(resArr[0] === 0){
+        res.send("Invalid user id");
+    }else{
+        let user = await userController.getUser(userId);
+        res.send(user);
+    }
+});
 
 //Delete User
 router.delete('/:id', async (req, res) => {

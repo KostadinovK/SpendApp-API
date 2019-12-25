@@ -13,6 +13,18 @@ const userController = function(){
         return db.User.findOne({ where: {Id: id}});
     };
 
+    const editUser = function(id, username, password, budget, currency){
+        return db.User.update(
+            { 
+                Username: username,
+                Password: password,
+                BudgetAmount: budget,
+                CurrencyId: currency 
+            },
+            { where: { Id: id } }
+        );
+    };
+
     const deleteUser = function(id){
         return db.User.destroy({
                     where: {
@@ -24,6 +36,7 @@ const userController = function(){
         registerUser,
         getAllUsers,
         getUser,
+        editUser,
         deleteUser
     };
 }();
