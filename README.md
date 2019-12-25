@@ -1,2 +1,2 @@
 # SpendApp-API
-REST API for SpendApp made with NodeJS for my thesis work in ELSYS
+REST API for SpendApp made with ExpressJS for my thesis work in ELSYS
