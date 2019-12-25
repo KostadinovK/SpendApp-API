@@ -1,5 +1,4 @@
 const router = require('express').Router();
-const db = require('../models/index');
 const userController = require('../controllers/userController');
 
 //Get All Users
@@ -25,20 +24,30 @@ router.post('/', async (req, res) => {
 
 });
 
-router.delete('/:id', (req, res) => {
+//Get User
+router.get('/:id', async (req, res) => {
     let userId = +req.params.id;
 
-    db.User.destroy({
-        where: {
-           Id: userId
-        }
-     }).then(function(rowDeleted){
-       if(rowDeleted === 1){
-          res.send({deleted: rowDeleted});
-        }
-     }, function(err){
-         console.log(err); 
-     });
+    let user = await userController.getUser(userId);
+
+    if(user === null){
+        res.send("Invalid user id");
+    }else{
+        res.send(user);
+    }
+});
+
+//Delete User
+router.delete('/:id', async (req, res) => {
+    let userId = +req.params.id;
+
+    let rowDeleted = await userController.deleteUser(userId);
+
+    if(rowDeleted === 1){
+        res.send({deleted: rowDeleted});
+    }else{
+        res.send("Error");
+    }
 });
 
 
