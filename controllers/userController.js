@@ -1,5 +1,5 @@
 const db = require('../models/index');
-const jwt = require('../jwt');
+const jwt = require('../modules/jwt');
 
 const userController = function(){
     const registerUser = function(username, password, budget, currency){
