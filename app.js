@@ -1,11 +1,17 @@
 const express = require('express');
 const db = require('./models/index');
 const seeder = require('./config/seeder');
+const usersRouter = require('./routes/users');
 
 const app = express();
 
+app.use(express.json());
+
+app.use('/users', usersRouter);
+
 app.get('/', (req, res) => {
 
+    /*
     db.User.create({
         Username: 'TestTestov',
         Password: 'test123',
@@ -18,7 +24,7 @@ app.get('/', (req, res) => {
     });
     
 
-    /*
+    
     Get Users
     
     let userDtos = [];
