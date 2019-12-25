@@ -28,6 +28,11 @@ module.exports = (sequelize, DataTypes) => {
         },
         RegisterTimestamp: {
             type: DataTypes.DATE
+        },
+        IsAdmin: {
+            type: DataTypes.BOOLEAN,
+            allowNull: false,
+            defaultValue: false
         }
 
     }, {timestamps: false});
@@ -53,14 +58,14 @@ module.exports = (sequelize, DataTypes) => {
             });
     });
 
-    User.beforeUpdate((user, options) => {
+    User.beforeBulkUpdate((user, options) => {
 
-        return bcrypt.hash(user.Password, 10)
+        return bcrypt.hash(user.attributes.Password, 10)
             .then(hash => {
-                user.Password = hash;
+                user.attributes.Password = hash;
             })
             .catch(err => { 
-                throw new Error(); 
+                throw new Error(err); 
             });
     });
 

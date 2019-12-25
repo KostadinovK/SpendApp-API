@@ -22,13 +22,14 @@ const userController = function(){
         return db.User.findOne({ where: {Username: username}});
     }
 
-    const editUser = function(id, username, password, budget, currency){
+    const editUser = function(id, username, password, budget, currency, isAdmin = false){
         return db.User.update(
             { 
                 Username: username,
                 Password: password,
                 BudgetAmount: budget,
-                CurrencyId: currency 
+                CurrencyId: currency,
+                IsAdmin: isAdmin 
             },
             { where: { Id: id } }
         );
