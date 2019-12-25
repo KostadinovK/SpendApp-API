@@ -1,3 +1,5 @@
+const bcrypt = require('bcryptjs');
+
 module.exports = (sequelize, DataTypes) => {
     const User = sequelize.define('Users', {
         Id: {
@@ -13,7 +15,7 @@ module.exports = (sequelize, DataTypes) => {
         },
         Password: {
             type: DataTypes.STRING,
-            validate: { len: [6, 50] },
+            validate: { len: [6, 255] },
             allowNull: false
         },
         BudgetAmount: {
@@ -39,6 +41,17 @@ module.exports = (sequelize, DataTypes) => {
         User.hasMany( models.Income, { as: 'Incomes' } );
         User.hasMany( models.BudgetByTime, { as: 'BudgetsByTime' } );
     };
+
+    User.beforeCreate((user, options) => {
+
+        return bcrypt.hash(user.Password, 10)
+            .then(hash => {
+                user.Password = hash;
+            })
+            .catch(err => { 
+                throw new Error(); 
+            });
+    });
 
     return User;
 };
