@@ -2,13 +2,15 @@ const router = require('express').Router();
 const db = require('../models/index');
 const userController = require('../controllers/userController');
 
-router.get('/', (req, res) => {
-    res.send("Users");
+//Get All Users
+router.get('/', async (req, res, next) => {
+    var users = await userController.getAllUsers();
+    res.send(users);
 });
 
 //Register user
 router.post('/', async (req, res) => {
-    
+
     const {username, password, budget, currency} = req.body;
 
     let resArr = await userController.registerUser(username, password, budget, currency);
@@ -21,6 +23,22 @@ router.post('/', async (req, res) => {
         res.status(201).send(user);
     }
 
+});
+
+router.delete('/:id', (req, res) => {
+    let userId = +req.params.id;
+
+    db.User.destroy({
+        where: {
+           Id: userId
+        }
+     }).then(function(rowDeleted){
+       if(rowDeleted === 1){
+          res.send({deleted: rowDeleted});
+        }
+     }, function(err){
+         console.log(err); 
+     });
 });
 
 
