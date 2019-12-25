@@ -1,10 +1,11 @@
 const router = require('express').Router();
 const bcrypt = require('bcryptjs');
+const auth = require('../modules/auth');
 
 const userController = require('../controllers/userController');
 
 //Get All Users
-router.get('/', async (req, res, next) => {
+router.get('/', auth(), async (req, res, next) => {
     var users = await userController.getAllUsers();
     res.send(users);
 });
@@ -46,6 +47,12 @@ router.post('/login', async (req, res) => {
             }
         }).catch(err => res.send(err));
     }
+});
+
+//Logout
+router.get('/logout', async (req, res) => {
+    res.clearCookie('auth_cookie');
+    res.send('Loged out');
 });
 
 //Get User

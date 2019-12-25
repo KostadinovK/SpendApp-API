@@ -8,8 +8,10 @@ const usersRouter = require('./routes/users');
 
 const app = express();
 
+app.use(cors({
+    credentials: true
+}));
 app.use(cookieParser('secret'))
-app.use(cors());
 app.use(express.json());
 
 app.set('json replacer', (key, value) => {
