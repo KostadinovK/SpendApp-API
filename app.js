@@ -1,11 +1,14 @@
 const express = require('express');
 const cors = require('cors');
+const cookieParser = require('cookie-parser');
+
 const db = require('./models/index');
 const seeder = require('./config/seeder');
 const usersRouter = require('./routes/users');
 
 const app = express();
 
+app.use(cookieParser('secret'))
 app.use(cors());
 app.use(express.json());
 

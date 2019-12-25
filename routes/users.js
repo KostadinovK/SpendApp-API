@@ -1,4 +1,6 @@
 const router = require('express').Router();
+const bcrypt = require('bcryptjs');
+
 const userController = require('../controllers/userController');
 
 //Get All Users
@@ -24,11 +26,33 @@ router.post('/', async (req, res) => {
 
 });
 
+//Login
+router.post('/login', async (req, res) => {
+
+    const {username, password} = req.body;
+
+    let user = await userController.getUserByUsername(username);
+    
+    if(user === null){
+        res.send({error: "User doesnt exist!"});
+    }else{
+        bcrypt.compare(password, user.Password).then(async function(result) {
+            if(result === true){
+                let token = await userController.loginUser(user);
+                res.cookie('auth_cookie', token);
+                res.send({token, user});
+            }else{
+                res.send({error: "Invalid Password!"});
+            }
+        }).catch(err => res.send(err));
+    }
+});
+
 //Get User
 router.get('/:id', async (req, res) => {
     let userId = +req.params.id;
 
-    let user = await userController.getUser(userId);
+    let user = await userController.getUserById(userId);
 
     if(user === null){
         res.send("Invalid user id");
@@ -47,7 +71,7 @@ router.put('/:id', async (req, res) => {
     if(resArr[0] === 0){
         res.send("Invalid user id");
     }else{
-        let user = await userController.getUser(userId);
+        let user = await userController.getUserById(userId);
         res.send(user);
     }
 });
