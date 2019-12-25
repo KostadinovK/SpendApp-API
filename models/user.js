@@ -53,5 +53,16 @@ module.exports = (sequelize, DataTypes) => {
             });
     });
 
+    User.beforeUpdate((user, options) => {
+
+        return bcrypt.hash(user.Password, 10)
+            .then(hash => {
+                user.Password = hash;
+            })
+            .catch(err => { 
+                throw new Error(); 
+            });
+    });
+
     return User;
 };

@@ -37,6 +37,8 @@ router.get('/:id', async (req, res) => {
     }
 });
 
+//Edit User
+
 //Delete User
 router.delete('/:id', async (req, res) => {
     let userId = +req.params.id;
