@@ -50,8 +50,8 @@ router.post('/login', async (req, res) => {
 });
 
 //Logout
-router.get('/logout', async (req, res) => {
-    res.clearCookie('auth_cookie');
+router.get('/logout', auth(), async (req, res) => {
+    res.clearCookie("auth_cookie");
     res.send('Loged out');
 });
 
