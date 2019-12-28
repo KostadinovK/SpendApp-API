@@ -13,7 +13,9 @@ router.get('/', auth(true), async (req, res, next) => {
 //Register user
 router.post('/', async (req, res) => {
 
-    const {username, password, budget, currency} = req.body;
+    let {username, password, budget, currency} = req.body;
+
+    budget = +budget;
 
     let resArr = await userController.registerUser(username, password, budget, currency);
     let user = resArr[0];
