@@ -6,12 +6,14 @@ const db = require('./models/index');
 const seeder = require('./config/seeder');
 const usersRouter = require('./routes/users');
 const currenciesRouter = require('./routes/currencies');
+const paymentCategoriesRouter = require('./routes/paymentCategories');
 
 const app = express();
 
 app.use(cors({
     credentials: true
 }));
+
 app.use(cookieParser('secret'))
 app.use(express.json());
 
@@ -23,6 +25,7 @@ app.set('json replacer', (key, value) => {
 
 app.use('/users', usersRouter);
 app.use('/currencies', currenciesRouter);
+app.use('/paymentCategories', paymentCategoriesRouter);
 
 const PORT = 5000;
 
