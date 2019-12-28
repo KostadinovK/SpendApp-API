@@ -7,6 +7,7 @@ const seeder = require('./config/seeder');
 const usersRouter = require('./routes/users');
 const currenciesRouter = require('./routes/currencies');
 const paymentCategoriesRouter = require('./routes/paymentCategories');
+const incomeCategoriesRouter = require('./routes/incomeCategories');
 
 const app = express();
 
@@ -26,6 +27,7 @@ app.set('json replacer', (key, value) => {
 app.use('/users', usersRouter);
 app.use('/currencies', currenciesRouter);
 app.use('/paymentCategories', paymentCategoriesRouter);
+app.use('/incomeCategories', incomeCategoriesRouter);
 
 const PORT = 5000;
 
