@@ -10,6 +10,7 @@ const paymentCategoriesRouter = require('./routes/paymentCategories');
 const incomeCategoriesRouter = require('./routes/incomeCategories');
 const budgetsRouter = require('./routes/budgets');
 const paymentsRouter = require('./routes/payments');
+const incomesRouter = require('./routes/incomes');
 
 const app = express();
 
@@ -32,6 +33,7 @@ app.use('/paymentCategories', paymentCategoriesRouter);
 app.use('/incomeCategories', incomeCategoriesRouter);
 app.use('/budgets', budgetsRouter);
 app.use('/payments', paymentsRouter);
+app.use('/incomes', incomesRouter);
 
 const PORT = 5000;
 
