@@ -3,6 +3,10 @@ const jwt = require('../modules/jwt');
 
 const userController = function(){
     const registerUser = function(username, password, budget, currency){
+        if(username === null || password === null || password.length < 3 || budget < 0){
+            return;
+        }
+
         return db.User.findOrCreate({where: {Username: username}, defaults: { Password: password, BudgetAmount: budget, CurrencyId: currency, RegisterTimestamp: Date.now()}});
     };
 
@@ -23,6 +27,10 @@ const userController = function(){
     }
 
     const editUser = function(id, username, password, budget, currency, isAdmin = false){
+        if(username === null || password === null || password.length < 3 || budget < 0){
+            return;
+        }
+        
         return db.User.update(
             { 
                 Username: username,
