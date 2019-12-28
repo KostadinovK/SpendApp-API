@@ -5,6 +5,7 @@ const cookieParser = require('cookie-parser');
 const db = require('./models/index');
 const seeder = require('./config/seeder');
 const usersRouter = require('./routes/users');
+const currenciesRouter = require('./routes/currencies');
 
 const app = express();
 
@@ -21,6 +22,7 @@ app.set('json replacer', (key, value) => {
 
 
 app.use('/users', usersRouter);
+app.use('/currencies', currenciesRouter);
 
 const PORT = 5000;
 
