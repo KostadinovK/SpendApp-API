@@ -8,6 +8,7 @@ const usersRouter = require('./routes/users');
 const currenciesRouter = require('./routes/currencies');
 const paymentCategoriesRouter = require('./routes/paymentCategories');
 const incomeCategoriesRouter = require('./routes/incomeCategories');
+const budgetsRouter = require('./routes/budgets');
 
 const app = express();
 
@@ -28,6 +29,7 @@ app.use('/users', usersRouter);
 app.use('/currencies', currenciesRouter);
 app.use('/paymentCategories', paymentCategoriesRouter);
 app.use('/incomeCategories', incomeCategoriesRouter);
+app.use('/budgets', budgetsRouter);
 
 const PORT = 5000;
 
