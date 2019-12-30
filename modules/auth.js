@@ -15,7 +15,7 @@ module.exports = function(adminOnly = false){
                 next();
             })
             .catch(() => {
-                res.status(401).send("Unauthorized!");
+                res.status(401).send({error: "Unauthorized!You have no access to this page!"});
             });
     }
 }
