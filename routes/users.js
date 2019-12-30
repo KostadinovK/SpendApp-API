@@ -43,9 +43,9 @@ router.post('/login', async (req, res) => {
             if(result === true){
                 let token = await userController.loginUser(user);
                 res.cookie('auth_cookie', token, {expires: new Date(Date.now() + 900000 * 100), httpOnly: true});
-                res.send({token, user});
+                res.send(user);
             }else{
-                res.send({error: "Invalid Password!"});
+                res.send({error: "Invalid Username or Password!"});
             }
         }).catch(err => res.send(err));
     }
