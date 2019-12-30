@@ -14,9 +14,7 @@ const incomesRouter = require('./routes/incomes');
 
 const app = express();
 
-app.use(cors({
-    credentials: true
-}));
+app.use(cors({credentials: true, origin: 'http://127.0.0.1:5501'}));
 
 app.use(cookieParser('secret'))
 app.use(express.json());

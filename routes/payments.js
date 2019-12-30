@@ -60,7 +60,7 @@ router.get('/:id', auth(), async (req, res) => {
     let payment = await paymentController.getPaymentById(paymentId);
 
     if(payment === null){
-        res.send("Invalid payment id");
+        res.send({error: "Invalid payment Id!"});
     }else{
         res.send(payment);
     }
@@ -78,7 +78,7 @@ router.put('/:id', auth(), async (req, res) => {
     let resArr = paymentController.editPayment(id, amount, date, name, notes, categoryId, userId);
     
     if(resArr[0] === 0){
-        res.send("Invalid payment id");
+        res.send({error: "Invalid payment Id!"});
     }else{
         let payment = await paymentController.getPaymentById(paymentId);
         res.send(payment);
@@ -94,7 +94,7 @@ router.delete('/:id', auth(), async (req, res) => {
     if(rowDeleted === 1){
         res.send({deleted: rowDeleted});
     }else{
-        res.send("Error");
+        res.send({error: "Error deleting payment!"});
     }
 });
 

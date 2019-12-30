@@ -3,7 +3,7 @@ const auth = require('../modules/auth');
 const currencyController = require('../controllers/currencyController');
 
 //Get All
-router.get('/', auth(true), async (req, res) => {
+router.get('/', async (req, res) => {
     var currencies = await currencyController.getAllCurrencies();
     res.send(currencies);
 });
@@ -31,7 +31,7 @@ router.get('/:id', auth(true), async (req, res) => {
     let currency = await currencyController.getCurrencyById(currencyId);
 
     if(currency === null){
-        res.send("Invalid currency id");
+        res.send({error: "Invalid currency id"});
     }else{
         res.send(currency);
     }
@@ -45,7 +45,7 @@ router.put('/:id', auth(true), async (req, res) => {
     let resArr = await currencyController.editCurrency(currencyId, name, symbol, code);
     
     if(resArr[0] === 0){
-        res.send("Invalid currency id");
+        res.send({error: "Invalid currency id"});
     }else{
         let currency = await currencyController.getCurrencyById(currencyId);
         res.send(currency);
@@ -61,7 +61,7 @@ router.delete('/:id', auth(true), async (req, res) => {
     if(rowDeleted === 1){
         res.send({deleted: rowDeleted});
     }else{
-        res.send("Error");
+        res.send({error: "Error deleting currency"});
     }
 })
 

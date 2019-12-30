@@ -35,7 +35,7 @@ router.get('/:userId', auth(), async (req, res) => {
     let budgets = await budgetController.getBudgetsByUserId(userId);
 
     if(budgets === null){
-        res.send("Nobudgets with this userId");
+        res.send({error: "No budgets with this user Id"});
     }else{
         res.send(budgets);
     }
@@ -48,7 +48,7 @@ router.get('/:userId/:year', auth(), async (req, res) => {
     let budgets = await budgetController.getBudgetsByUserId(userId);
 
     if(budgets === null){
-        res.send("No budgets with this userId");
+        res.send({error: "No budgets with this user Id and year"});
     }else{
         res.send(budgets);
     }
@@ -62,7 +62,7 @@ router.get('/:userId/year/:year', auth(), async (req, res) => {
     let budgets = await budgetController.getBudgetsByUserIdAndYear(userId, year);
 
     if(budgets === null){
-        res.send("No budgets in this year");
+        res.send({error: "No budgets in this year"});
     }else{
         res.send(budgets);
     }
@@ -76,7 +76,7 @@ router.get('/:userId/month/:month', auth(), async (req, res) => {
     let budgets = await budgetController.getBudgetsByUserIdAndMonth(userId, month);
 
     if(budgets === null){
-        res.send("No budgets in this month");
+        res.send({error: "No budgets in this month"});
     }else{
         res.send(budgets);
     }
@@ -91,7 +91,7 @@ router.get('/:userId/:year/:month', auth(), async (req, res) => {
     let budget = await budgetController.getBudgetById(userId, year, month);
 
     if(budget === null){
-        res.send("Invalid budget id");
+        res.send({error: "Invalid budget id"});
     }else{
         res.send(budget);
     }
@@ -107,7 +107,7 @@ router.put('/:userId/:year/:month', auth(), async (req, res) => {
     let resArr = await budgetController.editBudget(userId, year, month, budgetAmount);
     
     if(resArr[0] === 0){
-        res.send("Invalid budget id");
+        res.send({error: "Invalid budget id"});
     }else{
         let budget = await budgetController.getBudgetById(userId, year, month);
         res.send(budget);
@@ -125,7 +125,7 @@ router.delete('/:userId/:year/:month', auth(true), async (req, res) => {
     if(rowDeleted === 1){
         res.send({deleted: rowDeleted});
     }else{
-        res.send("Error");
+        res.send({error: "Error deleting budget"});
     }
 })
 

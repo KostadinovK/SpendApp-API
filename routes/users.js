@@ -12,7 +12,7 @@ router.get('/', auth(true), async (req, res, next) => {
 
 //Register user
 router.post('/', async (req, res) => {
-
+    
     let {username, password, budget, currency} = req.body;
 
     budget = +budget;
@@ -42,7 +42,7 @@ router.post('/login', async (req, res) => {
         bcrypt.compare(password, user.Password).then(async function(result) {
             if(result === true){
                 let token = await userController.loginUser(user);
-                res.cookie('auth_cookie', token);
+                res.cookie('auth_cookie', token, {expires: new Date(Date.now() + 900000 * 100), httpOnly: true});
                 res.send({token, user});
             }else{
                 res.send({error: "Invalid Password!"});
@@ -54,7 +54,7 @@ router.post('/login', async (req, res) => {
 //Logout
 router.get('/logout', auth(), async (req, res) => {
     res.clearCookie("auth_cookie");
-    res.send('Loged out');
+    res.send({result: "Successfully logged out!"});
 });
 
 //Get User
@@ -64,7 +64,7 @@ router.get('/:id', auth(true), async (req, res) => {
     let user = await userController.getUserById(userId);
 
     if(user === null){
-        res.send("Invalid user id");
+        res.send({error: "Invalid User Id!"});
     }else{
         res.send(user);
     }
@@ -83,7 +83,7 @@ router.put('/:id', async (req, res) => {
     }
     
     if(resArr[0] === 0){
-        res.send("Invalid user id");
+        res.send({error: "Invalid User Id!"});
     }else{
         let user = await userController.getUserById(userId);
         res.send(user);
@@ -99,7 +99,7 @@ router.delete('/:id', auth(true), async (req, res) => {
     if(rowDeleted === 1){
         res.send({deleted: rowDeleted});
     }else{
-        res.send("Error");
+        res.send({error: "Error on user delete"});
     }
 });
 

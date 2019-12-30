@@ -60,7 +60,7 @@ router.get('/:id', auth(), async (req, res) => {
     let income = await incomeController.getIncomeById(incomeId);
 
     if(income === null){
-        res.send("Invalid income id");
+        res.send({error: "Invalid income id!"});
     }else{
         res.send(income);
     }
@@ -78,7 +78,7 @@ router.put('/:id', auth(), async (req, res) => {
     let resArr = incomeController.editIncome(id, amount, date, name, notes, categoryId, userId);
     
     if(resArr[0] === 0){
-        res.send("Invalid income id");
+        res.send({error: "Invalid income id!"});
     }else{
         let income = await incomeController.getIncomeById(incomeId);
         res.send(income);
@@ -94,7 +94,7 @@ router.delete('/:id', auth(), async (req, res) => {
     if(rowDeleted === 1){
         res.send({deleted: rowDeleted});
     }else{
-        res.send("Error");
+        res.send({error: "Error deleting income"});
     }
 });
 

@@ -31,7 +31,7 @@ router.get('/:id', auth(true), async (req, res) => {
     let category = await categoryController.getCategoryById(categoryId);
 
     if(category === null){
-        res.send("Invalid category id");
+        res.send({error: "Invalid category Id!"});
     }else{
         res.send(category);
     }
@@ -45,7 +45,7 @@ router.put('/:id', auth(true), async (req, res) => {
     let resArr = await categoryController.editCategory(categoryId, name, iconClass);
     
     if(resArr[0] === 0){
-        res.send("Invalid category id");
+        res.send({error: "Invalid category Id!"});
     }else{
         let category = await categoryController.getCategoryById(categoryId);
         res.send(category);
@@ -61,7 +61,7 @@ router.delete('/:id', auth(true), async (req, res) => {
     if(rowDeleted === 1){
         res.send({deleted: rowDeleted});
     }else{
-        res.send("Error");
+        res.send({error: "Error deleting category!"});
     }
 })
 
