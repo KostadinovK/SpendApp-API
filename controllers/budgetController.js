@@ -31,7 +31,7 @@ const budgetController = function(){
     }
 
     const editBudget = function(userId, year, month, budgetAmount){
-        if(userId < 0 || year < 0 || month < 0 || budgetAmount < 0){
+        if(userId < 0 || year < 0 || month < 0){
             return;
         }
 

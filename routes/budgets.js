@@ -103,7 +103,7 @@ router.put('/:userId/:year/:month', auth(), async (req, res) => {
     let year = +req.params.year;
     let month = +req.params.month;
     const { budgetAmount } = req.body;
-
+    
     let resArr = await budgetController.editBudget(userId, year, month, budgetAmount);
     
     if(resArr[0] === 0){
