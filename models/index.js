@@ -10,8 +10,7 @@ const models = {
   IncomeCategory: db.import('./incomeCategory'),
   Payment: db.import('./payment'),
   Income: db.import('./income'),
-  BudgetByTime: db.import('./budgetByTime'),
-  Session: db.import('./session')
+  BudgetByTime: db.import('./budgetByTime')
 };
 
 Object.keys(models).forEach(modelName => {
