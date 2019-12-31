@@ -17,7 +17,6 @@ module.exports = (sequelize, DataTypes) => {
         },
         BudgetAmount: {
             type: DataTypes.DECIMAL,
-            validate: { min: 0 },
             allowNull: false 
         },
     }, {timestamps: false});
