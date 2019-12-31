@@ -9,7 +9,7 @@ router.get('/', auth(true), async (req, res) => {
 });
 
 //Add
-router.post('/', auth(true), async (req, res) => {
+router.post('/', async (req, res) => {
 
     let {userId, year, month, budgetAmount} = req.body;
     userId = +userId;
