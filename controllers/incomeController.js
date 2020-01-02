@@ -16,7 +16,7 @@ const incomeController = function(){
     }
 
     const getIncomeById = function(id){
-        return db.Income.findOne({ where: {Id: id}});
+        return db.Income.findOne({ where: {Id: id}, include: [db.IncomeCategory]});
     }
 
     const getIncomesByUserId = function(userId){
