@@ -25,7 +25,7 @@ router.post('/', auth(true), async (req, res) => {
 });
 
 //Get By Id
-router.get('/:id', auth(true), async (req, res) => {
+router.get('/:id', auth(), async (req, res) => {
     let currencyId = +req.params.id;
 
     let currency = await currencyController.getCurrencyById(currencyId);
