@@ -75,7 +75,7 @@ router.put('/:id', auth(), async (req, res) => {
     categoryId = +categoryId;
     userId = +userId;
 
-    let resArr = paymentController.editPayment(id, amount, date, name, notes, categoryId, userId);
+    let resArr = paymentController.editPayment(paymentId, amount, date, name, notes, categoryId, userId);
     
     if(resArr[0] === 0){
         res.send({error: "Invalid payment Id!"});
