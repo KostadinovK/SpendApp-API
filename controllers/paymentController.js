@@ -19,7 +19,7 @@ const paymentController = function(){
     }
 
     const getPaymentsByUserId = function(userId){
-        return db.Payment.findAll({ where: {UserId: userId}});
+        return db.Payment.findAll({ where: {UserId: userId}, include: [db.PaymentCategory]});
     }
 
     const getPaymentsByCategoryId = function(categoryId){
