@@ -27,7 +27,7 @@ let corsOptions = {
     }
 };
 
-app.use(cors(corsOptions));
+//app.use(cors(corsOptions));
 
 app.use(cookieParser('secret'))
 app.use(express.json());

@@ -14,6 +14,10 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.DATE,
             allowNull: false
         },
+        IsInFuture: {
+            type: DataTypes.BOOLEAN,
+            allowNull: false
+        },
         Name: {
             type: DataTypes.STRING,
             validate: { len: [1, 30] },

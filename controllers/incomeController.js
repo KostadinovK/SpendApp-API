@@ -12,6 +12,8 @@ const incomeController = function(){
             return;
         }
 
+       
+
         return db.Income.findOrCreate({where: {Name: name, UserId: userId, Date: date, CategoryId: categoryId}, defaults: { Amount: amount, Notes: notes}});
     }
 
