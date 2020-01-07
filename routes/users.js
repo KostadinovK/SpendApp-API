@@ -58,7 +58,7 @@ router.get('/logout', auth(), async (req, res) => {
 });
 
 //Get User
-router.get('/:id', auth(true), async (req, res) => {
+router.get('/:id', auth(), async (req, res) => {
     let userId = +req.params.id;
 
     let user = await userController.getUserById(userId);
@@ -71,7 +71,7 @@ router.get('/:id', auth(true), async (req, res) => {
 });
 
 //Edit User
-router.put('/:id', async (req, res) => {
+router.put('/:id', auth(true), async (req, res) => {
     const userId = +req.params.id;
     const {username, password, budget, currency, isAdmin} = req.body;
 

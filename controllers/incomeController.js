@@ -12,9 +12,9 @@ const incomeController = function(){
             return;
         }
         
-        let year = Number(date.split('/')[0]);
-        let month = Number(date.split('/')[1]) - 1;
-        let day = Number(date.split('/')[2]);
+        let year = Number(date.split('-')[0]);
+        let month = Number(date.split('-')[1]) - 1;
+        let day = Number(date.split('-')[2]);
        
         let incomeDate = new Date(year, month, day);
 
