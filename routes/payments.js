@@ -25,6 +25,14 @@ router.get('/user/:id', auth(), async (req, res) => {
     res.send(payments);
 });
 
+//Get All with IsInFuture=true and by userId
+router.get('/user/:id/future', auth(), async (req, res) => {
+    let userId = +req.params.id;
+    
+    var payments = await paymentController.getAllPaymentsInFuture(userId);
+    res.send(payments);
+});
+
 //Get All by userId and categoryId
 router.get('/user/:userId/category/:categoryId', auth(), async (req, res) => {
     let userId = +req.params.userId;

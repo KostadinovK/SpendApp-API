@@ -1,4 +1,5 @@
 const db = require('../models/index');
+const { Op } = require('sequelize');
 
 const paymentController = function(){
 
@@ -11,7 +12,19 @@ const paymentController = function(){
             return;
         }
 
-        return db.Payment.findOrCreate({where: {Name: name, UserId: userId, Date: date, CategoryId: categoryId}, defaults: { Amount: amount, Notes: notes}});
+        let year = Number(date.split('/')[0]);
+        let month = Number(date.split('/')[1]) - 1;
+        let day = Number(date.split('/')[2]);
+       
+        let paymentDate = new Date(year, month, day);
+
+        let currentDate = new Date();
+
+        if(paymentDate.getTime() > currentDate.getTime()){
+            return db.Payment.findOrCreate({where: {Name: name, UserId: userId, Date: date, CategoryId: categoryId}, defaults: { Amount: amount, Notes: notes, IsInFuture: true}});
+        }
+
+        return db.Payment.findOrCreate({where: {Name: name, UserId: userId, Date: date, CategoryId: categoryId}, defaults: { Amount: amount, Notes: notes, IsInFuture: false}});
     }
 
     const getPaymentById = function(id){
@@ -20,6 +33,19 @@ const paymentController = function(){
 
     const getPaymentsByUserId = function(userId){
         return db.Payment.findAll({ where: {UserId: userId}, include: [db.PaymentCategory]});
+    }
+
+    // Get all payments where IsInFuture = true and date is before todays date
+    const getAllPaymentsInFuture = function(userId){
+        let date = new Date();
+
+        return db.Payment.findAll({  where: {
+            UserId: userId,
+            Date: {
+              [Op.lte]: date
+            },
+            IsInFuture: true
+          }, include: [db.PaymentCategory]});
     }
 
     const getPaymentsByCategoryId = function(categoryId){
@@ -63,7 +89,8 @@ const paymentController = function(){
         getPaymentsByCategoryId,
         getPaymentsByUserIdAndCategoryId,
         editPayment,
-        deletePayment
+        deletePayment,
+        getAllPaymentsInFuture
     };
 }();
 

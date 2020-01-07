@@ -1,5 +1,5 @@
 const db = require('../models/index');
-const sequelize = require('sequelize');
+const { Op } = require('sequelize');
 
 const incomeController = function(){
 
@@ -11,10 +11,20 @@ const incomeController = function(){
         if(amount < 0 || date === null || name === null || categoryId < 0 || userId < 0){
             return;
         }
-
+        
+        let year = Number(date.split('/')[0]);
+        let month = Number(date.split('/')[1]) - 1;
+        let day = Number(date.split('/')[2]);
        
+        let incomeDate = new Date(year, month, day);
 
-        return db.Income.findOrCreate({where: {Name: name, UserId: userId, Date: date, CategoryId: categoryId}, defaults: { Amount: amount, Notes: notes}});
+        let currentDate = new Date();
+
+        if(incomeDate.getTime() > currentDate.getTime()){
+            return db.Income.findOrCreate({where: {Name: name, UserId: userId, Date: date, CategoryId: categoryId}, defaults: { Amount: amount, Notes: notes, IsInFuture: true}});
+        }
+
+        return db.Income.findOrCreate({where: {Name: name, UserId: userId, Date: date, CategoryId: categoryId}, defaults: { Amount: amount, Notes: notes, IsInFuture: false}});
     }
 
     const getIncomeById = function(id){
@@ -27,6 +37,18 @@ const incomeController = function(){
 
     const getIncomesByCategoryId = function(categoryId){
         return db.Income.findAll({ where: {CategoryId: categoryId}});
+    }
+
+    const getAllIncomesInFuture = function(userId){
+        let date = new Date();
+
+        return db.Income.findAll({  where: {
+            UserId: userId,
+            Date: {
+              [Op.lte]: date
+            },
+            IsInFuture: true
+          }, include: [db.IncomeCategory]});
     }
 
     const getIncomesByUserIdAndCategoryId = function(userId, categoryId){
@@ -66,7 +88,8 @@ const incomeController = function(){
         getIncomesByCategoryId,
         getIncomesByUserIdAndCategoryId,
         editIncome,
-        deleteIncome
+        deleteIncome,
+        getAllIncomesInFuture
     };
 }();
 

@@ -25,6 +25,14 @@ router.get('/user/:id', auth(), async (req, res) => {
     res.send(incomes);
 });
 
+//Get All with IsInFuture=true and by userId
+router.get('/user/:id/future', auth(), async (req, res) => {
+    let userId = +req.params.id;
+    
+    var incomes = await incomeController.getAllIncomesInFuture(userId);
+    res.send(incomes);
+});
+
 //Get All by userId and categoryId
 router.get('/user/:userId/category/:categoryId', auth(), async (req, res) => {
     let userId = +req.params.userId;
