@@ -55,7 +55,7 @@ const incomeController = function(){
         return db.Income.findAll({ where: {UserId: userId, CategoryId: categoryId}});
     }
 
-    const editIncome = function(id, amount, date, name, notes, categoryId, userId){
+    const editIncome = function(id, amount, date, name, notes, categoryId, isInFuture, userId){
         if(amount < 0 || date === null || name === null || categoryId < 0 || userId < 0){
             return;
         }
@@ -67,6 +67,7 @@ const incomeController = function(){
                 Date: date,
                 Notes: notes,
                 CategoryId: categoryId,
+                IsInFuture: isInFuture,
                 UserId: userId
             },
             { where: { Id: id } }

@@ -77,13 +77,13 @@ router.get('/:id', auth(), async (req, res) => {
 //Edit
 router.put('/:id', auth(), async (req, res) => {
     const incomeId = +req.params.id;
-    let {amount, date, name, notes, categoryId, userId} = req.body;
+    let {amount, date, name, notes, categoryId, isInFuture, userId} = req.body;
 
     amount = +amount;
     categoryId = +categoryId;
     userId = +userId;
 
-    let resArr = incomeController.editIncome(incomeId, amount, date, name, notes, categoryId, userId);
+    let resArr = incomeController.editIncome(incomeId, amount, date, name, notes, categoryId, isInFuture, userId);
     
     if(resArr[0] === 0){
         res.send({error: "Invalid income id!"});

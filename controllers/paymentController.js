@@ -56,7 +56,7 @@ const paymentController = function(){
         return db.Payment.findAll({ where: {UserId: userId, CategoryId: categoryId}});
     }
 
-    const editPayment = function(id, amount, date, name, notes, categoryId, userId){
+    const editPayment = function(id, amount, date, name, notes, categoryId, isInFuture, userId){
         if(amount < 0 || date === null || name === null || categoryId < 0 || userId < 0){
             return;
         }
@@ -68,6 +68,7 @@ const paymentController = function(){
                 Date: date,
                 Notes: notes,
                 CategoryId: categoryId,
+                IsInFuture: isInFuture,
                 UserId: userId
             },
             { where: { Id: id } }
