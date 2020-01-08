@@ -18,11 +18,6 @@ module.exports = (sequelize, DataTypes) => {
             validate: { len: [6, 255] },
             allowNull: false
         },
-        BudgetAmount: {
-            type: DataTypes.DECIMAL,
-            validate: { min: 0 },
-            allowNull: false
-        },
         CurrencyId: {
             type: DataTypes.INTEGER
         },

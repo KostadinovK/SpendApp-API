@@ -27,7 +27,7 @@ const userController = function(){
     }
 
     const editUser = function(id, username, password, budget, currency, isAdmin = false){
-        if(username === null || password === null || password.length < 3 || budget < 0){
+        if(username === null || password === null || password.length < 3){
             return;
         }
         
@@ -35,7 +35,6 @@ const userController = function(){
             { 
                 Username: username,
                 Password: password,
-                BudgetAmount: budget,
                 CurrencyId: currency,
                 IsAdmin: isAdmin 
             },

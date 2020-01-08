@@ -73,13 +73,13 @@ router.get('/:id', auth(), async (req, res) => {
 //Edit User
 router.put('/:id', auth(true), async (req, res) => {
     const userId = +req.params.id;
-    const {username, password, budget, currency, isAdmin} = req.body;
+    const {username, password, currency, isAdmin} = req.body;
 
     let resArr;
     if(isAdmin === null || isAdmin === undefined){
-        resArr = await userController.editUser(userId, username, password, budget, currency);
+        resArr = await userController.editUser(userId, username, password, currency);
     }else{
-        resArr = await userController.editUser(userId, username, password, budget, currency, isAdmin);
+        resArr = await userController.editUser(userId, username, password, currency, isAdmin);
     }
     
     if(resArr[0] === 0){
