@@ -23,6 +23,22 @@
         {
             "Name": "Shopping",
             "IconClass": "fas fa-shopping-basket"
+        },
+        {
+            "Name": "Sport",
+            "IconClass": "fas fa-futbol"
+        },
+        {
+            "Name": "Clothes",
+            "IconClass": "fas fa-tshirt"
+        },
+        {
+            "Name": "Bills",
+            "IconClass": "fas fa-money-bill"
+        },
+        {
+            "Name": "Other",
+            "IconClass": "fas fa-dollar-sign"
         }
     ],
     "IncomeCategories": [
